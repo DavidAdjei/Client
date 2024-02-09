@@ -49,3 +49,34 @@ exports.signUp = async (req, res) => {
         console.log(err)
     }
 }
+
+exports.signin = async (req, res) => {
+    console.log("Preparing to Sign In");
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.json({
+                error: "User not found"
+            })
+        } else {
+            const match = await comparePassword(password, user.password);
+            if (!match) {
+                return res.json({
+                    error: "Password is incorrect"
+                })
+            } else {
+                const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+                    expiresIn: "7d",
+                })
+                user.password = undefined;
+                user.secret = undefined;
+                res.json({
+                    token, user,
+                })
+            }
+        }
+    } catch (err) {
+        console.log(err)
+    }
+}

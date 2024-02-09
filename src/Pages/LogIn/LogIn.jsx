@@ -1,40 +1,35 @@
 import React, { useState } from 'react';
-import { useUser } from '../../context/userContext';
 import UserInput from '../../features/UserInput';
+import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../context/userContext';
 
 
-
-export default function SignUp() {
-    const [name, setUsername] = useState('');
+export default function Login() {
     const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const { signin } = useUser();
+    const navigate = useNavigate();
+    const { login } = useUser();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
 
-        if (!name || !email || !password) {
+        if (!email || !password) {
             setError('Please fill in all fields');
             setLoading(false);
             return;
         } else {
-            signin(name, email, password, setLoading, setError)
+            login(email, password, setLoading, navigate, setError);
         }
+
+        
     };
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <UserInput
-                    type="text"
-                    value={name}
-                    name="name"
-                    placeholder="Enter Your Username"
-                    setValue={setUsername}
-                />
                 <UserInput
                     type="email"
                     value={email}

@@ -8,13 +8,16 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <UserProvider>
+  
+    
+  <React.StrictMode>
     <BrowserRouter>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
+      <UserProvider>
+          <App />
+      </UserProvider>
     </BrowserRouter>
-  </UserProvider>
+  </React.StrictMode>
+  
   
   
 );
