@@ -5,6 +5,7 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './context/userContext';
 import reportWebVitals from './reportWebVitals';
+import { ProductsProvider } from './context/productContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +14,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
+        <ProductsProvider>
           <App />
+        </ProductsProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>

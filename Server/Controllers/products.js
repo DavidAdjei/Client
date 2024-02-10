@@ -33,3 +33,15 @@ exports.addProducts = async (req, res) => {
         console.log(err)
     }
 }
+
+exports.products = async (req, res) => {
+    try {
+        const allProducts = await Product.find({});
+        res.json({products: allProducts})
+    } catch (err){
+        console.log(err);
+        res.json({
+            error: "Products not found"
+        })
+    }
+}
