@@ -1,0 +1,13 @@
+
+.user_input{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: .5rem;
+}
+.label{
+    font-size: .9rem;
+}
+.input_field{
+    height: 2.4rem;
+}

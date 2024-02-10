@@ -28,23 +28,25 @@ function App() {
   }, []);
   
   return (
-    <>
+    <div className='container'>
       <NavBar
         user={user}
         logout={logout}
       />
-      <Routes>
-        <Route exact path='/' element={user ?
-          <Homepage
-            products={products}
-            setProducts={setAllProducts}
-        /> : <Navigate to="/signin" />} />
-      <Route exact path='/admin' element = {user ? <Admin/> : <Navigate to="/" />}/>
-      <Route exact path='/newProduct' element={user ?  <NewProduct/> : <Navigate to="/" />} />
-      <Route exact path='/signup' element={<SignUp />} />
-      <Route exact path='/signin' element={<Login />} />
-    </Routes>
-    </>
+      <div className='main'>
+        <Routes>
+          <Route exact path='/' element={user ?
+            <Homepage
+              products={products}
+              setProducts={setAllProducts}
+          /> : <Navigate to="/signin" />} />
+          <Route exact path='/admin' element = {user ? <Admin/> : <Navigate to="/" />}/>
+          <Route exact path='/newProduct' element={user ?  <NewProduct/> : <Navigate to="/" />} />
+          <Route exact path='/signup' element={<SignUp />} />
+          <Route exact path='/signin' element={<Login />} />
+        </Routes>
+      </div>
+    </div>
     
   );
 }

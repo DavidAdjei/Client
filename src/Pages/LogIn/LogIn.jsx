@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import UserInput from '../../features/UserInput';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../context/userContext';
+import "./auth.css";
+import Logo from "../../assets/images/Logo.jpeg"
 
 
 export default function Login() {
@@ -28,8 +30,11 @@ export default function Login() {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className='auth_container'>
+            <div className='auth_image'>
+                <img src={Logo} alt="authImage" />
+            </div>
+            <form onSubmit={handleSubmit} className='form'>
                 <UserInput
                     type="email"
                     value={email}
@@ -44,8 +49,8 @@ export default function Login() {
                     placeholder="Enter Your Password"
                     setValue={setPassword}
                 />
-                <input type="submit" disabled={loading} />
-                {error && <p>{error}</p>}
+                <input type="submit" disabled={loading} className='auth_submit'/>
+                {error && <p className='error'>{error}</p>}
             </form>
         </div>
     );
