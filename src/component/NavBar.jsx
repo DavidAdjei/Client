@@ -1,6 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import "./component.css"
+import { useNavigate, Link } from 'react-router-dom';
+import "./component.css";
+import Logo from '../assets/images/Logo.jpeg'
 
 export default function NavBar({ user, logout }) {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export default function NavBar({ user, logout }) {
   return (
     <header className='header'>
       <nav className='nav'>
-        <h1 className='nav_welcome'>Welcome, {user ? user.name : 'Guest'}</h1>
+        <h1 className='nav_welcome'><Link to="/" className='nav_logo'><img src={Logo} alt="Logo" /></Link></h1>
         {user && user.role === "Admin" ? (
           <div className='button_container'>
             <button onClick={logout}>Logout</button>

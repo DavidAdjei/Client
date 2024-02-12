@@ -5,11 +5,12 @@ import NavBar from './component/NavBar';
 import axios from 'axios';
 import SignUp from './Pages/SignUp/SignUp';
 import Login from './Pages/LogIn/LogIn';
-import Homepage from './Pages/HomePage/Homepage';
+import ProductsPage from './Pages/ProductsPage/ProductsPage';
 import { useUser } from './context/userContext';
 import { useAllProducts } from './context/productContext';
 import Admin from './Pages/AdminPanel/Admin';
 import NewProduct from './Pages/AdminPanel/NewProduct';
+import Homepage from './Pages/HomePage/Homepage';
 
 function App() {
   const { user, logout } = useUser();
@@ -35,8 +36,9 @@ function App() {
       />
       <div className='main'>
         <Routes>
-          <Route exact path='/' element={user ?
-            <Homepage
+          <Route exact path='/' element={<Homepage user={user} />} />
+          <Route exact path='/products' element={user ?
+            <ProductsPage
               products={products}
               setProducts={setAllProducts}
           /> : <Navigate to="/signin" />} />
