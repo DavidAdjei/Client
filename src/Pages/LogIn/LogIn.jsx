@@ -30,28 +30,31 @@ export default function Login() {
     };
 
     return (
-        <div className='auth_container'>
-            <div className='auth_image'>
-                <img src={Logo} alt="authImage" />
+        <div className="auth">
+            <div className='auth_container'>
+                <div className='auth_image'>
+                    <img src={Logo} alt="authImage" />
+                </div>
+                <form onSubmit={handleSubmit} className='form'>
+                    <UserInput
+                        type="email"
+                        value={email}
+                        name="email"
+                        placeholder="Enter Your Email"
+                        setValue={setEmail}
+                    />
+                    <UserInput
+                        type="password"
+                        value={password}
+                        name="password"
+                        placeholder="Enter Your Password"
+                        setValue={setPassword}
+                    />
+                    <input type="submit" disabled={loading} className='auth_submit'/>
+                    {error && <p className='error'>{error}</p>}
+                </form>
             </div>
-            <form onSubmit={handleSubmit} className='form'>
-                <UserInput
-                    type="email"
-                    value={email}
-                    name="email"
-                    placeholder="Enter Your Email"
-                    setValue={setEmail}
-                />
-                <UserInput
-                    type="password"
-                    value={password}
-                    name="password"
-                    placeholder="Enter Your Password"
-                    setValue={setPassword}
-                />
-                <input type="submit" disabled={loading} className='auth_submit'/>
-                {error && <p className='error'>{error}</p>}
-            </form>
         </div>
+        
     );
 }

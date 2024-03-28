@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import "./component.css";
-import Logo from '../assets/images/Logo.jpeg'
+import Logo from '../assets/images/Logo.jpeg';
+import { useUser } from '../context/userContext';
+import ShoppingCart from './cart';
+import { useCart } from '../context/cartContext';
 
-export default function NavBar({ user, logout }) {
+
+export default function NavBar() {
+  const { user, logout } = useUser();
+  const {handleCartClick, isCartOpen} = useCart();
   const navigate = useNavigate();
+  
 
   const handleSignUpClick = () => {
-    user ? console.log(user.name) : console.log("Not found");
     navigate('/signup');
   };
 
@@ -19,15 +25,23 @@ export default function NavBar({ user, logout }) {
           <div className='button_container'>
             <button onClick={logout}>Logout</button>
             <button onClick={() => navigate("/admin")}>Admin</button>
+            <button onClick={handleCartClick}>Cart</button>
           </div>
         ) : user ? (
-          <button onClick={logout}>Logout</button>
+          <div className='button_container'>
+            <button onClick={handleCartClick}>Cart</button>
+            <button onClick={logout}>Logout</button>
+          </div>
         ) : (
           <div className='button_container'>
+            <button onClick={handleCartClick}>Cart</button>
             <button onClick={handleSignUpClick}>Sign Up</button>
             <button onClick={() => navigate('/signin')}>Log In</button>
           </div>
         )}
+        {isCartOpen && (
+              <ShoppingCart/>
+          )}
       </nav>
       
     </header>
